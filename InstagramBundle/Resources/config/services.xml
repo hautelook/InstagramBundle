@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="instagram_bundle.manager" class="InstagramBundle\Instagram\InstagramManager">
+            <argument>%instagram_bundle.client_id%</argument>
+            <argument>%instagram_bundle.client_secret%</argument>
+            <argument>%instagram_bundle.user_id%</argument>
+        </service>
+    </services>
+
+</container>

@@ -1,0 +1,38 @@
+{
+    "name": "vikramhautelook/instagrambundle",
+    "description": "This bundle enables Instagram API support in a Symfony environment.",
+    "keywords": ["instagram", "symfony"],
+    "homepage": "https://github.com/VikramHauteLook/InstagramBundle",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Vikram Jiandani",
+            "email": "vikram.jiandani@hautelook.com",
+            "homepage": "https://github.com/VikramHauteLook/InstagramBundle"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/sesser/Instaphp.git"
+        }
+    ],
+    "minimum-stability": "stable",
+    "support": {
+        "issues": "https://github.com/VikramHauteLook/InstagramBundle/issues"
+    },
+    "require": {
+        "php": ">=5.4.0",
+        "instaphp/instaphp": "2.0.2.1-beta"
+    },
+    "require-dev": {
+    },
+    "suggest": {
+    },
+    "autoload": {
+        "psr-0": { "InstagramBundle": "" }
+    },
+    "extra": {
+    }
+}
