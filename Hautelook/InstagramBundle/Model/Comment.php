@@ -1,10 +1,10 @@
 <?php
 
-namespace InstagramBundle\Model;
+namespace Hautelook\InstagramBundle\Model;
 
-use InstagramBundle\Model\InstagramUser;
+use Hautelook\InstagramBundle\Model\InstagramUser;
 
-class InstagramComment
+class Comment
 {
     /**
      * @var int
@@ -22,7 +22,7 @@ class InstagramComment
     private $text;
 
     /**
-     * @var InstagramUser
+     * @var User
      */
     private $user;
 
@@ -30,9 +30,9 @@ class InstagramComment
      * @param $id
      * @param \DateTime $createdTime
      * @param $text
-     * @param InstagramUser $user
+     * @param User $user
      */
-    public function __construct($id, \DateTime $createdTime, $text, InstagramUser $user)
+    public function __construct($id, \DateTime $createdTime, $text, User $user)
     {
         $this->id = $id;
         $this->createdTime = $createdTime;
@@ -65,7 +65,7 @@ class InstagramComment
     }
 
     /**
-     * @return InstagramUser
+     * @return User
      */
     public function getUser()
     {

@@ -1,26 +1,25 @@
 <?php
 
-namespace InstagramBundle\Instagram;
+namespace Hautelook\InstagramBundle\Instagram;
 
-use InstagramBundle\Instagram\InstagramPostBuilderInterface;
-use InstagramBundle\Model\InstagramPost;
-use InstagramBundle\Model\InstagramUser;
-use InstagramBundle\Model\InstagramComment;
-use InstagramBundle\Model\InstagramImage;
+use Hautelook\InstagramBundle\Model\Post;
+use Hautelook\InstagramBundle\Model\User;
+use Hautelook\InstagramBundle\Model\Comment;
+use Hautelook\InstagramBundle\Model\Image;
 
-class InstagramPostBuilder
+class PostParser
 {
     /**
      * @param array $rawPostData
-     * @return InstagramPost
+     * @return Post
      */
-    public function build(array $rawPostData)
+    public function parse(array $rawPostData)
     {
-        $likes = $this->buildLikes($rawPostData['likes']['data']);
-        $comments = $this->buildComments($rawPostData['comments']['data']);
-        $images = $this->buildImages($rawPostData['images']);
+        $likes = $this->parseLikes($rawPostData['likes']['data']);
+        $comments = $this->parseComments($rawPostData['comments']['data']);
+        $images = $this->parseImages($rawPostData['images']);
 
-        $post = new InstagramPost(
+        $post = new Post(
             $rawPostData['caption']['text'],
             new \DateTime(date(\DateTime::W3C, $rawPostData['created_time'])),
             $rawPostData['link'],
@@ -34,13 +33,13 @@ class InstagramPostBuilder
 
     /**
      * @param array $rawLikeData
-     * @return InstagramUser[]
+     * @return User[]
      */
-    private function buildLikes(array $rawLikeData) {
+    private function parseLikes(array $rawLikeData) {
         $likes = array();
 
         foreach ($rawLikeData as $like) {
-            $likes[] = new InstagramUser(
+            $likes[] = new User(
                 $like['id'],
                 $like['username'],
                 $like['full_name'],
@@ -53,20 +52,20 @@ class InstagramPostBuilder
 
     /**
      * @param array $rawCommentData
-     * @return InstagramComment[]
+     * @return Comment[]
      */
-    private function buildComments(array $rawCommentData) {
+    private function Comments(array $rawCommentData) {
         $comments = array();
 
         foreach ($rawCommentData as $comment) {
-            $user = new InstagramUser(
+            $user = new User(
                 $comment['from']['id'],
                 $comment['from']['username'],
                 $comment['from']['full_name'],
                 $comment['from']['profile_picture']
             );
 
-            $comments[] = new InstagramComment(
+            $comments[] = new Comment(
                 $comment['id'],
                 new \DateTime(date(\DateTime::W3C, $comment['created_time'])),
                 $comment['text'],
@@ -79,13 +78,13 @@ class InstagramPostBuilder
 
     /**
      * @param array $rawImageData
-     * @return InstagramImage[]
+     * @return Image[]
      */
-    private function buildImages(array $rawImageData) {
+    private function parseImages(array $rawImageData) {
         $images = array();
 
         foreach ($rawImageData as $key => $image) {
-            $images[$key] = new InstagramImage(
+            $images[$key] = new Image(
                 $image['url'],
                 $image['width'],
                 $image['height']

@@ -1,8 +1,8 @@
 <?php
 
-namespace InstagramBundle\Model;
+namespace Hautelook\InstagramBundle\Model;
 
-class InstagramUser
+class User
 {
     /**
      * @var int

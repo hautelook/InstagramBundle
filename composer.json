@@ -1,5 +1,5 @@
 {
-    "name": "vikramhautelook/instagrambundle",
+    "name": "hautelook/instagrambundle",
     "description": "This bundle enables Instagram API support in a Symfony environment.",
     "keywords": ["instagram", "symfony"],
     "homepage": "https://github.com/VikramHauteLook/InstagramBundle",
@@ -31,8 +31,9 @@
     "suggest": {
     },
     "autoload": {
-        "psr-0": { "InstagramBundle": "" }
+        "psr-0": { "Hautelook\\InstagramBundle": "" }
     },
+    "target-dir": "Hautelook/InstagramBundle",
     "extra": {
     }
 }

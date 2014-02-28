@@ -1,12 +1,12 @@
 <?php
 
-namespace InstagramBundle\Model;
+namespace Hautelook\InstagramBundle\Model;
 
-use InstagramBundle\Model\InstagramUser;
-use InstagramBundle\Model\InstagramComment;
-use InstagramBundle\Model\InstagramImage;
+use Hautelook\InstagramBundle\Model\User;
+use Hautelook\InstagramBundle\Model\Comment;
+use Hautelook\InstagramBundle\Model\Image;
 
-class InstagramPost
+class Post
 {
     /**
      * @var string
@@ -24,17 +24,17 @@ class InstagramPost
     private $link;
 
     /**
-     * @var InstagramUser[]
+     * @var User[]
      */
     private $likes;
 
     /**
-     * @var InstagramComment[]
+     * @var Comment[]
      */
     private $comments;
 
     /**
-     * @var InstagramImage[]
+     * @var Image[]
      */
     private $images;
 
@@ -63,7 +63,7 @@ class InstagramPost
     }
 
     /**
-     * @return InstagramComment[]
+     * @return Comment[]
      */
     public function getComments()
     {
@@ -87,7 +87,7 @@ class InstagramPost
     }
 
     /**
-     * @return InstagramImage[]
+     * @return Image[]
      */
     public function getImages()
     {
@@ -95,7 +95,7 @@ class InstagramPost
     }
 
     /**
-     * @return InstagramUser[]
+     * @return User[]
      */
     public function getLikes()
     {

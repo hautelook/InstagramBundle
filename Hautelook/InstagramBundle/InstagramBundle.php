@@ -1,6 +1,6 @@
 <?php
 
-namespace InstagramBundle;
+namespace Hautelook\InstagramBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 

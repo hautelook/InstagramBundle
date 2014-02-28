@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <parameters>
+        <parameter key="instagram_bundle.client_id">
+            invalid_client_id
+        </parameter>
+
+        <parameter key="instagram_bundle.client_secret">
+            invalid_client_secret
+        </parameter>
+
+        <parameter key="instagram_bundle.user_id">
+            invalid_user_id
+        </parameter>
+
+        <parameter key="instagram_bundle.client_params" type="collection">
+            <parameter key="client_id" type="constant">
+                %instagram_bundle.client_id%
+            </parameter>
+            <parameter key="client_secret" type="constant">
+                %instagram_bundle.client_secret%
+            </parameter>
+        </parameter>
+    </parameters>
+
+    <services>
+        <service id="instagram_bundle.instaphp" class="Instaphp\Instaphp">
+            <argument>%instagram_bundle.client_params%</argument>
+        </service>
+
+        <service id="instagram_bundle.post_parser" class="InstagramBundle\Instagram\PostParser"></service>
+
+        <service id="instagram_bundle.manager" class="InstagramBundle\Instagram\Manager">
+            <argument type="service" id="instagram_bundle.instaphp" />
+            <argument type="service" id="instagram_bundle.post_parser" />
+        </service>
+    </services>
+
+</container>

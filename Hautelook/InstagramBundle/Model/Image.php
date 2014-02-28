@@ -1,8 +1,8 @@
 <?php
 
-namespace InstagramBundle\Model;
+namespace Hautelook\InstagramBundle\Model;
 
-class InstagramImage
+class Image
 {
     /**
      * @var string
