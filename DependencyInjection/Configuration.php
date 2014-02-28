@@ -13,7 +13,29 @@ class Configuration implements ConfigurationInterface
     public function getConfigTreeBuilder()
     {
         $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('instagram_bundle');
+        $rootNode = $treeBuilder->root('hautelook_instagram');
+
+        $rootNode
+            ->children()
+                ->arrayNode('instaphp_params')
+                    ->isRequired()
+                    ->children()
+                        ->scalarNode('client_id')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                        ->scalarNode('client_secret')
+                            ->isRequired()
+                            ->cannotBeEmpty()
+                        ->end()
+                    ->end()
+                ->end()
+                ->scalarNode('user_id')
+                    ->isRequired()
+                    ->cannotBeEmpty()
+                ->end()
+            ->end()
+        ;
 
         return $treeBuilder;
     }

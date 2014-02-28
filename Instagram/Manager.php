@@ -2,6 +2,7 @@
 
 namespace Hautelook\InstagramBundle\Instagram;
 
+use Hautelook\InstagramBundle\Exception\InvalidInstagramResponseException;
 use Hautelook\InstagramBundle\Instagram\PostParser;
 use Instaphp\Instaphp;
 
@@ -24,21 +25,40 @@ class Manager
      */
     private $userId;
 
-    public function __construct($instaphp, $postParser, $userId)
+    /**
+     * @param Instaphp $instaphp
+     * @param PostParser $postParser
+     * @param int $userId
+     */
+    public function __construct(Instaphp $instaphp, PostParser $postParser, $userId)
     {
         $this->instaphp = $instaphp;
         $this->postParser = $postParser;
         $this->userId = $userId;
     }
 
+    /**
+     * @param int $numRecent
+     * @return array
+     * @throws InvalidInstagramResponseException
+     */
     public function getRecent($numRecent)
     {
         $data = $this->instaphp->Users->Recent($this->userId)->data;
+
+        if (empty($data)) {
+            throw new InvalidInstagramResponseException();
+        }
+
         $rawResponseData = array_slice($data, 0, min($numRecent, self::MAX_RECENT));
 
         return $this->buildPosts($rawResponseData);
     }
 
+    /**
+     * @param array $rawResponseData
+     * @return array
+     */
     private function buildPosts(array $rawResponseData)
     {
         $posts = array();

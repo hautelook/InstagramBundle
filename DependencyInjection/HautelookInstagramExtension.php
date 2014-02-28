@@ -7,7 +7,7 @@ use Symfony\Component\Config\FileLocator;
 use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 use Symfony\Component\DependencyInjection\Loader;
 
-class InstagramExtension extends Extension
+class HautelookInstagramExtension extends Extension
 {
     /**
      * {@inheritDoc}
@@ -19,5 +19,15 @@ class InstagramExtension extends Extension
 
         $loader = new Loader\XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
+
+        $container
+            ->getDefinition('hautelook_instagram.instaphp')
+            ->replaceArgument(0, $config['instaphp_params'])
+        ;
+
+        $container
+            ->getDefinition('hautelook_instagram.manager')
+            ->replaceArgument(2, $config['user_id'])
+        ;
     }
 }

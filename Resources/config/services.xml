@@ -4,40 +4,17 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
-    <parameters>
-        <parameter key="instagram_bundle.client_id">
-            invalid_client_id
-        </parameter>
-
-        <parameter key="instagram_bundle.client_secret">
-            invalid_client_secret
-        </parameter>
-
-        <parameter key="instagram_bundle.user_id">
-            invalid_user_id
-        </parameter>
-
-        <parameter key="instagram_bundle.client_params" type="collection">
-            <parameter key="client_id">
-                %instagram_bundle.client_id%
-            </parameter>
-            <parameter key="client_secret">
-                %instagram_bundle.client_secret%
-            </parameter>
-        </parameter>
-    </parameters>
-
     <services>
-        <service id="instagram_bundle.instaphp" class="Instaphp\Instaphp">
-            <argument>%instagram_bundle.client_params%</argument>
+        <service id="hautelook_instagram.instaphp" class="Instaphp\Instaphp">
+            <argument /> <!-- DI Extension replaces this value -->
         </service>
 
-        <service id="instagram_bundle.post_parser" class="Hautelook\InstagramBundle\Instagram\PostParser"></service>
+        <service id="hautelook_instagram.post_parser" class="Hautelook\InstagramBundle\Instagram\PostParser"></service>
 
-        <service id="instagram_bundle.manager" class="Hautelook\InstagramBundle\Instagram\Manager">
-            <argument type="service" id="instagram_bundle.instaphp" />
-            <argument type="service" id="instagram_bundle.post_parser" />
-            <argument>%instagram_bundle.user_id%</argument>
+        <service id="hautelook_instagram.manager" class="Hautelook\InstagramBundle\Instagram\Manager">
+            <argument type="service" id="hautelook_instagram.instaphp" />
+            <argument type="service" id="hautelook_instagram.post_parser" />
+            <argument /> <!-- DI Extension replaces this value -->
         </service>
     </services>
 

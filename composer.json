@@ -12,19 +12,13 @@
             "homepage": "https://github.com/VikramHauteLook/InstagramBundle"
         }
     ],
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/sesser/Instaphp.git"
-        }
-    ],
     "minimum-stability": "stable",
     "support": {
         "issues": "https://github.com/VikramHauteLook/InstagramBundle/issues"
     },
     "require": {
         "php": ">=5.4.0",
-        "instaphp/instaphp": "2.0.2.1-beta"
+        "instaphp/instaphp": "~2.0"
     },
     "require-dev": {
     },
