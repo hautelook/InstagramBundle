@@ -1,5 +1,5 @@
 {
-    "name": "hautelook/instagrambundle",
+    "name": "vikramhautelook/instagrambundle",
     "description": "This bundle enables Instagram API support in a Symfony environment.",
     "keywords": ["instagram", "symfony"],
     "homepage": "https://github.com/VikramHauteLook/InstagramBundle",
