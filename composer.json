@@ -18,9 +18,10 @@
     },
     "require": {
         "php": ">=5.4.0",
-        "instaphp/instaphp": "~2.0"
+        "instaphp/instaphp": "2.0.2.1-beta"
     },
     "require-dev": {
+        "phpunit/phpunit": "3.7.21"
     },
     "suggest": {
     },
