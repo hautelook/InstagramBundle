@@ -1,6 +1,6 @@
 <?php
 
-namespace InstagramBundle\DependencyInjection;
+namespace Hautelook\InstagramBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

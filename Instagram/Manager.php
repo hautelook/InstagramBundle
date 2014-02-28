@@ -45,7 +45,7 @@ class Manager
 
         $postParser = $this->getPostParser();
         foreach ($rawResponseData as $rawPostData) {
-            $posts[] = $postParser->build($rawPostData);
+            $posts[] = $postParser->parse($rawPostData);
         }
 
         return $posts;

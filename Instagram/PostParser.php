@@ -54,7 +54,7 @@ class PostParser
      * @param array $rawCommentData
      * @return Comment[]
      */
-    private function Comments(array $rawCommentData) {
+    private function parseComments(array $rawCommentData) {
         $comments = array();
 
         foreach ($rawCommentData as $comment) {
