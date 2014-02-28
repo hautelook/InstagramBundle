@@ -46,7 +46,7 @@ class Manager
     {
         $data = $this->instaphp->Users->Recent($this->userId)->data;
 
-        if (empty($data)) {
+        if (empty($data) || !is_array($data)) {
             throw new InvalidInstagramResponseException();
         }
 
