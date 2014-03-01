@@ -1,20 +1,19 @@
 {
-    "name": "vikramhautelook/instagrambundle",
+    "name": "hautelook/instagram-bundle",
     "description": "This bundle enables Instagram API support in a Symfony environment.",
     "keywords": ["instagram", "symfony"],
-    "homepage": "https://github.com/VikramHauteLook/InstagramBundle",
+    "homepage": "https://github.com/hauteLook/InstagramBundle",
     "type": "symfony-bundle",
     "license": "MIT",
     "authors": [
         {
             "name": "Vikram Jiandani",
-            "email": "vikram.jiandani@hautelook.com",
-            "homepage": "https://github.com/VikramHauteLook/InstagramBundle"
+            "email": "vikram.jiandani@hautelook.com"
         }
     ],
     "minimum-stability": "stable",
     "support": {
-        "issues": "https://github.com/VikramHauteLook/InstagramBundle/issues"
+        "issues": "https://github.com/hauteLook/InstagramBundle/issues"
     },
     "require": {
         "php": ">=5.4.0",
