@@ -1,6 +1,8 @@
 InstagramBundle
 ===============
 
+[![Build Status](https://travis-ci.org/hautelook/InstagramBundle.png?branch=master)](https://travis-ci.org/hautelook/InstagramBundle)
+
 Include this bundle in your kernel by adding:
 
 ```new Hautelook\InstagramBundle\InstagramBundle()```
