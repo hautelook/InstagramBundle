@@ -9,13 +9,15 @@ use Hautelook\InstagramBundle\Instagram\PostParser;
 
 class InstaphpIntegrationTest extends \PHPUnit_Framework_TestCase
 {
+    const DESIRED_POST_COUNT = 6;
+
     public function testInvalidResponse()
     {
         $this->setExpectedException('Hautelook\InstagramBundle\Exception\InvalidInstagramResponseException');
 
         $invalidResponse = new InstagramTestResponseObject(null);
         $manager = $this->getMockedManager($invalidResponse);
-        $posts = $manager->getRecent(6);
+        $posts = $manager->getRecent(self::DESIRED_POST_COUNT);
     }
 
     public function testEmptyResponse()
@@ -24,7 +26,7 @@ class InstaphpIntegrationTest extends \PHPUnit_Framework_TestCase
 
         $invalidResponse = new InstagramTestResponseObject(array());
         $manager = $this->getMockedManager($invalidResponse);
-        $posts = $manager->getRecent(6);
+        $posts = $manager->getRecent(self::DESIRED_POST_COUNT);
     }
 
     public function testGetRecent()
@@ -32,48 +34,21 @@ class InstaphpIntegrationTest extends \PHPUnit_Framework_TestCase
         $responseObject = ResponseFixtures::getSampleInstagramResponse();
 
         $manager = $this->getMockedManager($responseObject);
-        $posts = $manager->getRecent(6);
+        $posts = $manager->getRecent(self::DESIRED_POST_COUNT);
 
         $this->assertTrue(is_array($posts));
-        $this->assertCount(6, $posts);
+        $this->assertCount(self::DESIRED_POST_COUNT, $posts);
+    }
 
-        /**
-         * @var $firstPost Hautelook\InstagramBundle\Model\Post
-         */
-        $firstPost = $posts[0];
-        $this->assertEquals(
-            'We like to make statements. Bold #baubles start at $14.97. #accessorize',
-            $firstPost->getCaption()
-        );
+    public function testGetRecentOverMax()
+    {
+        $responseObject = ResponseFixtures::getSampleInstagramResponse();
 
-        /**
-         * @var $firstImage Hautelook\InstagramBundle\Model\Image
-         */
-        $images = $firstPost->getImages();
-        $this->assertArrayHasKey('standard_resolution', $images);
-        $standardImage = $images['standard_resolution'];
-        $this->assertEquals(
-            'http://distilleryimage0.s3.amazonaws.com/9b347072a09f11e3b66a128b5b5a1c60_8.jpg',
-            $standardImage->getUrl()
-        );
+        $manager = $this->getMockedManager($responseObject);
+        $posts = $manager->getRecent(Manager::MAX_RECENT+10);
 
-        /**
-         * @var $firstLike Hautelook\InstagramBundle\Model\User
-         */
-        $firstLike = $firstPost->getLikes()[0];
-        $this->assertEquals(
-            'Jessica Van Tassel',
-            $firstLike->getFullName()
-        );
-
-        /**
-         * @var $firstComment Hautelook\InstagramBundle\Model\Comment
-         */
-        $firstComment = $firstPost->getComments()[0];
-        $this->assertContains(
-            'My go to store for the best costume jewelry',
-            $firstComment->getText()
-        );
+        $this->assertTrue(is_array($posts));
+        $this->assertCount(Manager::MAX_RECENT, $posts);
     }
 
     private function getMockedManager($responseObject)
