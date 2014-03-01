@@ -33,7 +33,6 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
-        new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
         new Hautelook\InstagramBundle\HautelookInstagramBundle(),
         // ...
     );
