@@ -1,13 +1,13 @@
 <?php
 
-namespace Hautelook\InstagramBundle\Tests\Instagram;
+namespace Hautelook\InstagramBundle\Tests\Integration;
 
 use Hautelook\InstagramBundle\Tests\Fixtures\InstagramTestResponseObject;
 use Hautelook\InstagramBundle\Tests\Fixtures\ResponseFixtures;
 use Hautelook\InstagramBundle\Instagram\Manager;
 use Hautelook\InstagramBundle\Instagram\PostParser;
 
-class ManagerTest extends \PHPUnit_Framework_TestCase
+class InstaphpIntegrationTest extends \PHPUnit_Framework_TestCase
 {
     public function testInvalidResponse()
     {
