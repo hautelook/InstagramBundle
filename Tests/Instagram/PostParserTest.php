@@ -1,10 +1,9 @@
 <?php
 
-namespace Hautelook\InstagramBundle\Tests\Integration;
+namespace Hautelook\InstagramBundle\Tests\Instagram;
 
 use Hautelook\InstagramBundle\Tests\Fixtures\InstagramTestResponseObject;
 use Hautelook\InstagramBundle\Tests\Fixtures\ResponseFixtures;
-use Hautelook\InstagramBundle\Instagram\Manager;
 use Hautelook\InstagramBundle\Instagram\PostParser;
 
 class PostParserTest extends \PHPUnit_Framework_TestCase
