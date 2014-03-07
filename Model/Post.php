@@ -9,6 +9,11 @@ use Hautelook\InstagramBundle\Model\Image;
 class Post
 {
     /**
+     * @var $id
+     */
+    private $id;
+
+    /**
      * @var string
      */
     private $caption;
@@ -38,7 +43,17 @@ class Post
      */
     private $images;
 
+    /**
+     * @param int    $id
+     * @param string $caption
+     * @param int    $createdTime
+     * @param string $link
+     * @param array  $likes
+     * @param array  $comments
+     * @param array  $images
+     */
     public function __construct(
+        $id,
         $caption,
         $createdTime,
         $link,
@@ -46,12 +61,21 @@ class Post
         array $comments,
         array $images
     ) {
+        $this->id = $id;
         $this->caption = $caption;
         $this->createdTime = $createdTime;
         $this->link = $link;
         $this->likes = $likes;
         $this->comments = $comments;
         $this->images = $images;
+    }
+
+    /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
     }
 
     /**

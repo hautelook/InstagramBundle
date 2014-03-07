@@ -49,12 +49,18 @@ class PostTest extends \PHPUnit_Framework_TestCase
         );
 
         $post = new Post(
+            'some id',
             'some caption',
             $createdTime,
             'some link',
             $likes,
             $comments,
             $images
+        );
+
+        $this->assertEquals(
+            'some id',
+            $post->getId()
         );
 
         $this->assertEquals(

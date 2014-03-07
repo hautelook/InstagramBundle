@@ -20,6 +20,7 @@ class PostParser
         $images = $this->parseImages($rawPostData['images']);
 
         $post = new Post(
+            $rawPostData['id'],
             $rawPostData['caption']['text'],
             new \DateTime(date(\DateTime::W3C, $rawPostData['created_time'])),
             $rawPostData['link'],
