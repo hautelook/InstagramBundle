@@ -92,5 +92,22 @@ class PostTest extends \PHPUnit_Framework_TestCase
             $likes,
             $post->getLikes()
         );
+
+        $this->assertEquals(
+            count($likes),
+            $post->getNumLikes()
+        );
+
+        $this->assertEquals(
+            count($comments),
+            $post->getNumComments()
+        );
+
+        $this->assertEmpty(
+            array_diff(
+                array_keys($images),
+                $post->getImageKeys()
+            )
+        );
     }
 }

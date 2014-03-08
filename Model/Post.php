@@ -95,6 +95,14 @@ class Post
     }
 
     /**
+     * @return int
+     */
+    public function getNumComments()
+    {
+        return count($this->comments);
+    }
+
+    /**
      * @return \DateTime
      */
     public function getCreatedTime()
@@ -119,11 +127,27 @@ class Post
     }
 
     /**
+     * @return string[]
+     */
+    public function getImageKeys()
+    {
+        return array_keys($this->images);
+    }
+
+    /**
      * @return User[]
      */
     public function getLikes()
     {
         return $this->likes;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumLikes()
+    {
+        return count($this->getLikes());
     }
 
     /**
