@@ -18,12 +18,14 @@ class PostParser
         $likes = $this->parseLikes($rawPostData['likes']['data']);
         $comments = $this->parseComments($rawPostData['comments']['data']);
         $images = $this->parseImages($rawPostData['images']);
+        $user = $this->parseUser($rawPostData['user']);
 
         $post = new Post(
             $rawPostData['id'],
             $rawPostData['caption']['text'],
             new \DateTime(date(\DateTime::W3C, $rawPostData['created_time'])),
-            $rawPostData['link'],
+            $this->stripProtocolFromUrl($rawPostData['link']),
+            $user,
             $likes,
             $comments,
             $images
@@ -44,7 +46,7 @@ class PostParser
                 $like['id'],
                 $like['username'],
                 $like['full_name'],
-                $like['profile_picture']
+                $this->stripProtocolFromUrl($like['profile_picture'])
             );
         }
 
@@ -63,7 +65,7 @@ class PostParser
                 $comment['from']['id'],
                 $comment['from']['username'],
                 $comment['from']['full_name'],
-                $comment['from']['profile_picture']
+                $this->stripProtocolFromUrl($comment['from']['profile_picture'])
             );
 
             $comments[] = new Comment(
@@ -86,12 +88,30 @@ class PostParser
 
         foreach ($rawImageData as $key => $image) {
             $images[$key] = new Image(
-                $image['url'],
+                $this->stripProtocolFromUrl($image['url']),
                 $image['width'],
                 $image['height']
             );
         }
 
         return $images;
+    }
+
+    private function parseUser(array $rawUserData) {
+        return new User(
+            $rawUserData['id'],
+            $rawUserData['username'],
+            $rawUserData['full_name'],
+            $this->stripProtocolFromUrl($rawUserData['profile_picture'])
+        );
+    }
+
+    /**
+     * @param string $url
+     * @return string
+     */
+    private function stripProtocolFromUrl($url)
+    {
+        return preg_replace('/^http\:/', '', $url);
     }
 }

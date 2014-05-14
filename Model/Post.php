@@ -44,10 +44,16 @@ class Post
     private $images;
 
     /**
+     * @var User
+     */
+    private $user;
+
+    /**
      * @param int    $id
      * @param string $caption
      * @param int    $createdTime
      * @param string $link
+     * @param User   $user
      * @param array  $likes
      * @param array  $comments
      * @param array  $images
@@ -57,6 +63,7 @@ class Post
         $caption,
         $createdTime,
         $link,
+        $user,
         array $likes,
         array $comments,
         array $images
@@ -65,6 +72,7 @@ class Post
         $this->caption = $caption;
         $this->createdTime = $createdTime;
         $this->link = $link;
+        $this->user = $user;
         $this->likes = $likes;
         $this->comments = $comments;
         $this->images = $images;
@@ -156,5 +164,13 @@ class Post
     public function getLink()
     {
         return $this->link;
+    }
+
+    /**
+     * @return User
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

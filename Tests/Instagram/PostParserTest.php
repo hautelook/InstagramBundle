@@ -23,6 +23,16 @@ class PostParserTest extends \PHPUnit_Framework_TestCase
             $instagramPost->getCaption()
         );
 
+        $this->assertEquals(
+            '//instagram.com/p/k9_GeMyrdL/',
+            $instagramPost->getLink()
+        );
+
+        $this->assertEquals(
+            '//images.ak.instagram.com/profiles/profile_46939780_75sq_1383073405.jpg',
+            $instagramPost->getUser()->getProfilePicture()
+        );
+
         /**
          * @var $firstImage Hautelook\InstagramBundle\Model\Image
          */
@@ -30,7 +40,7 @@ class PostParserTest extends \PHPUnit_Framework_TestCase
         $this->assertArrayHasKey('standard_resolution', $images);
         $standardImage = $images['standard_resolution'];
         $this->assertEquals(
-            'http://distilleryimage0.s3.amazonaws.com/9b347072a09f11e3b66a128b5b5a1c60_8.jpg',
+            '//distilleryimage0.s3.amazonaws.com/9b347072a09f11e3b66a128b5b5a1c60_8.jpg',
             $standardImage->getUrl()
         );
 
@@ -42,6 +52,10 @@ class PostParserTest extends \PHPUnit_Framework_TestCase
             'Jessica Van Tassel',
             $firstLike->getFullName()
         );
+        $this->assertEquals(
+            '//images.ak.instagram.com/profiles/profile_43350912_75sq_1391892967.jpg',
+            $firstLike->getProfilePicture()
+        );
 
         /**
          * @var $firstComment Hautelook\InstagramBundle\Model\Comment
@@ -50,6 +64,10 @@ class PostParserTest extends \PHPUnit_Framework_TestCase
         $this->assertContains(
             'My go to store for the best costume jewelry',
             $firstComment->getText()
+        );
+        $this->assertEquals(
+            '//images.ak.instagram.com/profiles/profile_206942942_75sq_1390531239.jpg',
+            $firstComment->getUser()->getProfilePicture()
         );
     }
 
