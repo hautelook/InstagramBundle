@@ -15,6 +15,13 @@ class PostTest extends \PHPUnit_Framework_TestCase
     {
         $createdTime = new \DateTime();
 
+        $postUser = new User(
+            400,
+            'post user name',
+            'post full name',
+            'profile picture'
+        );
+
         $user = new User(
             200,
             'user name',
@@ -53,6 +60,7 @@ class PostTest extends \PHPUnit_Framework_TestCase
             'some caption',
             $createdTime,
             'some link',
+            $postUser,
             $likes,
             $comments,
             $images
@@ -76,6 +84,11 @@ class PostTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(
             'some link',
             $post->getLink()
+        );
+
+        $this->assertSame(
+            $postUser,
+            $post->getUser()
         );
 
         $this->assertSame(
