@@ -33,6 +33,16 @@ class PostParserTest extends \PHPUnit_Framework_TestCase
             $instagramPost->getUser()->getProfilePicture()
         );
 
+        $this->assertEquals(
+            264,
+            $instagramPost->getNumLikes()
+        );
+
+        $this->assertEquals(
+            4,
+            $instagramPost->getNumComments()
+        );
+
         /**
          * @var $firstImage Hautelook\InstagramBundle\Model\Image
          */

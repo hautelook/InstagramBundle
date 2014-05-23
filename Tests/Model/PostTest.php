@@ -63,7 +63,9 @@ class PostTest extends \PHPUnit_Framework_TestCase
             $postUser,
             $likes,
             $comments,
-            $images
+            $images,
+            500,
+            300
         );
 
         $this->assertEquals(
@@ -107,12 +109,12 @@ class PostTest extends \PHPUnit_Framework_TestCase
         );
 
         $this->assertEquals(
-            count($likes),
+            500,
             $post->getNumLikes()
         );
 
         $this->assertEquals(
-            count($comments),
+            300,
             $post->getNumComments()
         );
 

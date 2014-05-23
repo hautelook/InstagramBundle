@@ -28,7 +28,9 @@ class PostParser
             $user,
             $likes,
             $comments,
-            $images
+            $images,
+            intval($rawPostData['likes']['count']),
+            intval($rawPostData['comments']['count'])
         );
 
         return $post;
