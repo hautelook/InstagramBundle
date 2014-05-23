@@ -49,6 +49,16 @@ class Post
     private $user;
 
     /**
+     * @var int
+     */
+    private $numLikes;
+
+    /**
+     * @var int
+     */
+    private $numComments;
+
+    /**
      * @param int    $id
      * @param string $caption
      * @param int    $createdTime
@@ -57,6 +67,8 @@ class Post
      * @param array  $likes
      * @param array  $comments
      * @param array  $images
+     * @param int    $numLikes
+     * @param int    $numComments
      */
     public function __construct(
         $id,
@@ -66,7 +78,9 @@ class Post
         $user,
         array $likes,
         array $comments,
-        array $images
+        array $images,
+        $numLikes,
+        $numComments
     ) {
         $this->id = $id;
         $this->caption = $caption;
@@ -76,6 +90,8 @@ class Post
         $this->likes = $likes;
         $this->comments = $comments;
         $this->images = $images;
+        $this->numLikes = $numLikes;
+        $this->numComments = $numComments;
     }
 
     /**
@@ -107,7 +123,7 @@ class Post
      */
     public function getNumComments()
     {
-        return count($this->comments);
+        return $this->numComments;
     }
 
     /**
@@ -155,7 +171,7 @@ class Post
      */
     public function getNumLikes()
     {
-        return count($this->getLikes());
+        return $this->numLikes;
     }
 
     /**
