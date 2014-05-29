@@ -4,6 +4,8 @@ namespace Hautelook\InstagramBundle\Instagram;
 
 use Hautelook\InstagramBundle\Exception\InvalidInstagramResponseException;
 use Hautelook\InstagramBundle\Instagram\PostParser;
+use Instaphp\Exceptions\HttpException;
+use Instaphp\Exceptions\InstagramException;
 use Instaphp\Instaphp;
 
 class Manager
@@ -44,7 +46,13 @@ class Manager
      */
     public function getRecent($numRecent)
     {
-        $data = $this->instaphp->Users->Recent($this->userId)->data;
+        try {
+            $data = $this->instaphp->Users->Recent($this->userId)->data;
+        } catch (InstagramException $e) { //Handles most of the Instaphp exceptions
+            throw new InvalidInstagramResponseException();
+        } catch (HttpException $e) { // Doesn't extend InstagramException and needs to be specifically handled
+            throw new InvalidInstagramResponseException();
+        }
 
         if (empty($data) || !is_array($data)) {
             throw new InvalidInstagramResponseException();
