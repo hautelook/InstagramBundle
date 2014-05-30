@@ -50,6 +50,8 @@ hautelook_instagram:
     instaphp_params:
         client_id: <your client id>
         client_secret: <your client secret>
+        http_connect_timeout: 1
+        http_timeout: 1
     user_id: <your user id>
 ```
 
